@@ -29,11 +29,11 @@
         
         <div v-if="question.type == 'TEXT'" class="text-slate-100 text-lg"> 
             {{ question.description }}
-            <textarea :value="answer.value" @input="textAnswer" class="mt-4 bg-blue-200 text-blue-900 border border-blue-300 rounded-lg w-full focus:text-blue-700 focus:ring-blue-500 focus:bg-blue-50 p-4 mb-8 placeholder-white focus:placeholder-blue-500" placeholder="Your answer..."></textarea>
+            <textarea :value="answer.value" @input="textAnswer" class="mt-4 bg-blue-200 text-blue-900 border border-blue-300 placeholder-blue-800 rounded-lg w-full focus:text-blue-700 focus:ring-blue-500 focus:bg-blue-50 p-4 mb-8 focus:placeholder-blue-500" placeholder="Your answer..."></textarea>
         </div>
         <div v-else-if="question.type === 'SELECT' || question.type === 'MULTI_SELECT'" class="hover:cursor-pointer mt-6 text-lg text-slate-100 mb-8">
             {{ question.description }}
-            <div v-for="option in question.options" :class="`h-12 m-auto mt-6 ${answer.options.includes(option.optionId) ? 'bg-blue-800': 'border-2 hover:bg-blue-100'} items-center rounded-lg p-2 text-center flex justify-between px-4`" @click="pushToActive(option.optionId)">
+            <div v-for="option in question.options" :class="`h-12 m-auto mt-6 ${answer.options.includes(option.optionId) ? 'bg-blue-800': 'border-2 hover:bg-blue-100 hover:text-blue-400'} items-center rounded-lg p-2 text-center flex justify-between px-4`" @click="pushToActive(option.optionId)">
                 {{ option.value }}
                 <CheckCircleIcon v-if="answer.options.includes(option.optionId)" class="h-6 w-6"/>
             </div>
