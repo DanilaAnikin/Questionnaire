@@ -7,6 +7,7 @@
   import { onMounted, ref } from 'vue'
 
   const quest = ref([]);
+  const questions = ref([]);
   const passwordProtected = ref(false);
 
   const getQuestionnaire = async (password="") => {
@@ -18,12 +19,23 @@
 
     if(typeof data !== 'boolean'){
       quest.value = data
+      questions.value = data.questions.map((question) => ({
+        question,
+        answer: {
+          value: "",
+          options: []
+        }
+      }))
     }
   }
 
-  onMounted(getQuestionnaire);
+  const setAnswer = (data, index) => {
+    questions.value[index].answer = {...questions.value[index].answer, ...data};
+  }
 
-  const active = ref(false)
+  const logAnswers = () => console.log(questions.value.map(({answer}) => answer));
+
+  onMounted(getQuestionnaire);
 
 </script>
 
@@ -33,8 +45,7 @@
   </div>
   <div v-else>
     <QuestionnaireInfo :questionnaire="quest"/>
-    <Question v-for="question in quest.questions" :key="question.id" :question="question"/>
+    <Question v-for="(question, index) in questions" :key="question.id" :question="question.question" :answer="question.answer" @set-answer="setAnswer($event, index)"/>
   </div>
 
 </template>
-
