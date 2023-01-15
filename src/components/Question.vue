@@ -24,7 +24,7 @@
 
 </script>
 <template>
-    <div class="mx-auto mt-28 w-full max-w-3xl bg-blue-500 rounded-3xl p-10 shadow-2xl mb-20">
+    <div class="mx-auto mt-12 w-full max-w-3xl bg-blue-500 rounded-3xl p-10 shadow-2xl mb-10">
         <h2 class="text-2xl text-purple-50 font-bold my-3">{{ question.title }}</h2>
         
         <div v-if="question.type == 'TEXT'" class="text-slate-100 text-lg"> 

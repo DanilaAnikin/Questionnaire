@@ -48,13 +48,13 @@
   <div v-if="passwordProtected">
     <Login @get-questionnaire="getQuestionnaire" />
   </div>
-  <div v-else-if="!questions.sent">
+  <div v-else>
     <QuestionnaireInfo :questionnaire="quest"/>
     <Question v-for="(question, index) in questions" :key="question.id" :question="question.question" :answer="question.answer" @set-answer="setAnswer($event, index)"/>
     <Send :send-answers="send(true)"/>
   </div>
-  <div v-if="questions.sent">
+  <!-- <div v-if="questions.sent">
     <ThanksFor />
-  </div>
+  </div> -->
 
 </template>
