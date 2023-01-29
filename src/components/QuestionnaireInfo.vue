@@ -5,12 +5,8 @@ defineProps({
 </script>
 
 <template>
-    <div class="mx-auto mt-20 h-60 w-full max-w-5xl flex flex-col bg-blue-600 rounded-3xl p-10 shadow-xl shadow-indigo-500">
-    <h2 class="text-3xl text-slate-100 font-medium mb-2">{{ questionnaire.name }}</h2>
-    <p class="text-lg mt-8 ml-4 text-sky-100 font-bold break-all">{{ questionnaire.description }}</p>
+    <div class="justify-center text-center mx-auto h-auto pt-20 pb-10 flex border-b border-b-gray-400 flex-col bg-transparent">
+        <h2 class="text-2xl text-gray-900 max-w-3xl w-full mx-auto text-left">{{ questionnaire.name }}</h2>
+        <p class="mt-4 text-gray-700 text-lg mx-auto break-all max-w-2xl w-full flex">{{ questionnaire.description }}</p>
     </div>
 </template>
-
-<style scoped>
-
-</style>

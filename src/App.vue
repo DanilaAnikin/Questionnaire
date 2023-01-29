@@ -17,7 +17,7 @@
   }
 
   const getQuestionnaire = async (password="") => {
-    const response = await fetch("https://database.nubestech.cz:4443/answer/3", {method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify({password})});
+    const response = await fetch("https://database.nubestech.cz:4443/answer/7", {method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify({password})});
 
     const data = await response.json();
 
@@ -45,16 +45,22 @@
 </script>
 
 <template>
-  <div v-if="passwordProtected">
+  <div v-if="/*passwordProtected*/ false">
     <Login @get-questionnaire="getQuestionnaire" />
   </div>
-  <div v-else>
+  <div v-else-if="/*!questions.sent*/ true">
     <QuestionnaireInfo :questionnaire="quest"/>
-    <Question v-for="(question, index) in questions" :key="question.id" :question="question.question" :answer="question.answer" @set-answer="setAnswer($event, index)"/>
-    <Send :send-answers="send(true)"/>
+    <Question v-for="(question, index) in questions" :index="index+1" :key="question.id" :question="question.question" :answer="question.answer" @set-answer="setAnswer($event, index)"/>
+    <Send @send-answers="send"/>
   </div>
-  <!-- <div v-if="questions.sent">
+  <div v-if="questions.sent">
     <ThanksFor />
-  </div> -->
+  </div>
 
 </template>
+
+<style>
+  body {
+    background-color: rgb(226 232 240);
+  }
+</style>
